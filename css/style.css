@@ -1,0 +1,696 @@
+/* ==========================================================================
+   WERKZUKUNFT – Zentrales Stylesheet
+   Statische Website, keine Abhängigkeiten, Systemschriften (DSGVO-konform)
+   ========================================================================== */
+
+:root {
+  --blau-dunkel: #16324c;
+  --blau: #1f4e79;
+  --blau-hell: #eef3f8;
+  --bronze: #b3823f;
+  --bronze-dunkel: #94681f;
+  --text: #2b3138;
+  --text-hell: #5a6470;
+  --grau-bg: #f5f7f9;
+  --linie: #dde4ea;
+  --weiss: #ffffff;
+  --serif: Georgia, "Times New Roman", Times, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--weiss);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Typografie
+   -------------------------------------------------------------------------- */
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  color: var(--blau-dunkel);
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 4.5vw, 2.75rem);
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--blau);
+}
+
+a:hover {
+  color: var(--bronze-dunkel);
+}
+
+ul, ol {
+  margin: 0 0 1rem 1.25rem;
+}
+
+li {
+  margin-bottom: 0.4rem;
+}
+
+/* --------------------------------------------------------------------------
+   Layout-Container
+   -------------------------------------------------------------------------- */
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.section--grau {
+  background: var(--grau-bg);
+}
+
+.section--blau {
+  background: var(--blau-dunkel);
+  color: #dbe5ee;
+}
+
+.section--blau h2 {
+  color: var(--weiss);
+}
+
+.section-intro {
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Header & Navigation (CSS-only, ohne JavaScript)
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  background: var(--weiss);
+  border-bottom: 1px solid var(--linie);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.25rem;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--blau-dunkel);
+  text-decoration: none;
+}
+
+.logo span {
+  color: var(--bronze);
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: var(--blau-dunkel);
+  height: 2px;
+  width: 26px;
+  border-radius: 2px;
+  position: relative;
+  content: "";
+  transition: transform 0.2s ease;
+}
+
+.nav-toggle-label span::before {
+  position: absolute;
+  top: -8px;
+}
+
+.nav-toggle-label span::after {
+  position: absolute;
+  top: 8px;
+}
+
+.site-nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.97rem;
+  font-weight: 500;
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.site-nav a:hover {
+  color: var(--blau);
+  border-bottom-color: var(--bronze);
+}
+
+.site-nav a.aktiv {
+  color: var(--blau-dunkel);
+  border-bottom-color: var(--bronze);
+}
+
+@media (max-width: 860px) {
+  .nav-toggle-label {
+    display: block;
+  }
+
+  .site-nav {
+    flex-basis: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+  }
+
+  .nav-toggle:checked ~ .site-nav {
+    max-height: 30rem;
+  }
+
+  .nav-toggle:checked ~ .nav-toggle-label span {
+    background: transparent;
+  }
+
+  .nav-toggle:checked ~ .nav-toggle-label span::before {
+    transform: rotate(45deg);
+    top: 0;
+  }
+
+  .nav-toggle:checked ~ .nav-toggle-label span::after {
+    transform: rotate(-45deg);
+    top: 0;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 0 1rem;
+  }
+
+  .site-nav li {
+    margin: 0;
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--linie);
+  }
+
+  .site-nav a.aktiv {
+    border-bottom-color: var(--bronze);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+
+.hero {
+  background: linear-gradient(160deg, var(--blau-dunkel) 0%, var(--blau) 100%);
+  color: var(--weiss);
+  padding: 5rem 0;
+}
+
+.hero h1 {
+  color: var(--weiss);
+  max-width: 800px;
+}
+
+.hero .untertitel {
+  font-size: 1.2rem;
+  color: #c8d6e3;
+  max-width: 680px;
+  margin-bottom: 2rem;
+}
+
+.hero--seite {
+  padding: 3.5rem 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-foto img {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 860px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero-foto {
+    max-width: 480px;
+  }
+}
+
+.hero .dachzeile {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn--primaer {
+  background: var(--bronze);
+  color: var(--weiss);
+}
+
+.btn--primaer:hover {
+  background: var(--bronze-dunkel);
+  color: var(--weiss);
+}
+
+.btn--sekundaer {
+  background: transparent;
+  color: var(--weiss);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.btn--sekundaer:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--weiss);
+}
+
+.btn--blau {
+  background: var(--blau);
+  color: var(--weiss);
+}
+
+.btn--blau:hover {
+  background: var(--blau-dunkel);
+  color: var(--weiss);
+}
+
+.btn-gruppe {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   Karten (Leistungen)
+   -------------------------------------------------------------------------- */
+
+.karten {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.5rem;
+}
+
+.karte {
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-top: 3px solid var(--bronze);
+  border-radius: 6px;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.karte p {
+  flex-grow: 1;
+}
+
+.karte .mehr {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+   Kennzahlen
+   -------------------------------------------------------------------------- */
+
+.kennzahlen {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+
+.kennzahl .zahl {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--bronze);
+  line-height: 1.1;
+}
+
+.kennzahl .beschreibung {
+  font-size: 0.97rem;
+  color: #c8d6e3;
+}
+
+/* --------------------------------------------------------------------------
+   Zweispalter & Listen
+   -------------------------------------------------------------------------- */
+
+.zweispalter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  .zweispalter {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.themenliste {
+  list-style: none;
+  margin-left: 0;
+}
+
+.themenliste li {
+  padding-left: 1.6rem;
+  position: relative;
+  margin-bottom: 0.65rem;
+}
+
+.themenliste li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  color: var(--bronze);
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   Porträtfotos
+   -------------------------------------------------------------------------- */
+
+.portraet {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(22, 50, 76, 0.18);
+  margin-bottom: 1.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Zitat / Motto
+   -------------------------------------------------------------------------- */
+
+.motto {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  font-style: italic;
+  color: var(--blau-dunkel);
+  border-left: 4px solid var(--bronze);
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  margin: 2rem 0;
+}
+
+.section--blau .motto {
+  color: var(--weiss);
+}
+
+/* --------------------------------------------------------------------------
+   Stationen / Lebenslauf
+   -------------------------------------------------------------------------- */
+
+.stationen {
+  list-style: none;
+  margin-left: 0;
+  border-left: 2px solid var(--linie);
+}
+
+.stationen li {
+  position: relative;
+  padding: 0 0 1.5rem 1.75rem;
+}
+
+.stationen li::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 0.45rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bronze);
+}
+
+.stationen .titel {
+  font-weight: 700;
+  color: var(--blau-dunkel);
+}
+
+/* --------------------------------------------------------------------------
+   Ablauf-Schritte (Kontakt)
+   -------------------------------------------------------------------------- */
+
+.schritte {
+  list-style: none;
+  margin-left: 0;
+  counter-reset: schritt;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.schritte li {
+  counter-increment: schritt;
+  background: var(--weiss);
+  border: 1px solid var(--linie);
+  border-radius: 6px;
+  padding: 1.75rem 1.5rem;
+}
+
+.schritte li::before {
+  content: counter(schritt);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--blau-dunkel);
+  color: var(--weiss);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Kontakt-Infobox
+   -------------------------------------------------------------------------- */
+
+.kontaktbox {
+  background: var(--blau-hell);
+  border: 1px solid var(--linie);
+  border-radius: 6px;
+  padding: 2rem;
+}
+
+.kontaktbox p {
+  margin-bottom: 0.5rem;
+}
+
+.kontaktbox .label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-hell);
+  margin-top: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   CTA-Band
+   -------------------------------------------------------------------------- */
+
+.cta-band {
+  background: var(--blau-dunkel);
+  color: var(--weiss);
+  padding: 3.5rem 0;
+  text-align: center;
+}
+
+.cta-band h2 {
+  color: var(--weiss);
+}
+
+.cta-band p {
+  color: #c8d6e3;
+  max-width: 620px;
+  margin: 0 auto 1.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  background: #10243a;
+  color: #9fb3c5;
+  padding: 3rem 0 2rem;
+  font-size: 0.95rem;
+}
+
+.footer-spalten {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.site-footer h3 {
+  color: var(--weiss);
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
+}
+
+.site-footer a {
+  color: #c8d6e3;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--bronze);
+}
+
+.site-footer ul {
+  list-style: none;
+  margin-left: 0;
+}
+
+.footer-unten {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Rechtstexte (Impressum, Datenschutz)
+   -------------------------------------------------------------------------- */
+
+.rechtstext {
+  max-width: 760px;
+}
+
+.rechtstext h2 {
+  font-size: 1.4rem;
+  margin-top: 2.25rem;
+}
+
+.rechtstext h3 {
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Hilfsklassen
+   -------------------------------------------------------------------------- */
+
+.zentriert {
+  text-align: center;
+}
+
+.abstand-oben {
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 2.75rem 0;
+  }
+
+  .hero {
+    padding: 3.5rem 0;
+  }
+}

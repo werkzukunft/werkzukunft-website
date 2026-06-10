@@ -1,0 +1,5 @@
+# Lokale Claude-Code-Konfiguration und Vorschau-Server (nicht Teil der Website)
+.claude/
+
+# Foto-Originale (nur die optimierten Versionen in images/ werden veroeffentlicht)
+624308*.jpg
