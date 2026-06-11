@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://werkzukunft.de/sitemap.xml
